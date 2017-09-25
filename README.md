@@ -1,5 +1,4 @@
 # Gaussian Processes for Computational Biology
-## Peter Tonner, Duke University
 
 Gaussian processes (GPs) are a non-parameteric model of functional data (e.g. time-course) that
 have wide applicability in computational biology (see examples below). The purpose of this workshop is
