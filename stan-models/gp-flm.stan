@@ -3,19 +3,18 @@ data {
   int<lower=1> P; # number of replicates
   int<lower=1> K; # number of latent functions
   int<lower=1> L; # number of priors
+
   int<lower=1, upper=L> prior[K]; # prior assignment for each function
   real alpha_prior[L,2];
   real lengthscale_prior[L,2];
   real sigma_prior[2];
-  real ls_min;
-  real ls_max;
 
   matrix[P,K] design;
   row_vector[N] y[P];
   real x[N];
 }
 parameters {
-  real<lower=ls_min, upper=ls_max> lengthscale[L];
+  real<lower=0> lengthscale[L];
   real<lower=0> alpha[L];
   real<lower=0> sigma;
   vector[N] f_eta[K];
@@ -55,9 +54,9 @@ model {
   for (i in 1:P)
     y[i] ~ normal(design[i]*f, sigma);
 }
-generated quantities{
-  row_vector[N] resid[P];
-
-  for (i in 1:P)
-    resid[i] = y[i] - design[i]*f;
-}
+// generated quantities{
+//   row_vector[N] resid[P];
+//
+//   for (i in 1:P)
+//     resid[i] = y[i] - design[i]*f;
+// }
