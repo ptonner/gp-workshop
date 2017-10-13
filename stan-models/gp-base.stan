@@ -6,8 +6,8 @@ data {
 parameters {
   //constrain hyperparameters to be positive
   real<lower=0> length_scale;
-  real<lower=0> alpha;
-  real<lower=0> sigma;
+  real<lower=0> alpha; // RBF variance
+  real<lower=0> sigma; //observation noise
   vector[N] f_eta;
 }
 transformed parameters {
